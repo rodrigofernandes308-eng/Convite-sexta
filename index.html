@@ -1,50 +1,190 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Convite ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Convite Especial ❤️</title>
 
 <style>
 body{
-    font-family: Arial;
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    font-family:Arial,sans-serif;
+    overflow:hidden;
+}
+
+.container{
+    background:white;
+    padding:40px;
+    border-radius:25px;
     text-align:center;
-    margin-top:150px;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+h1{
+    color:#e91e63;
+    margin-bottom:25px;
+}
+
+button{
+    border:none;
+    padding:15px 30px;
+    font-size:18px;
+    border-radius:15px;
+    cursor:pointer;
+    margin:10px;
+    transition:.2s;
+}
+
+#sim{
+    background:#4CAF50;
+    color:white;
+}
+
+#sim:hover{
+    transform:scale(1.1);
 }
 
 #nao{
     position:absolute;
+    background:#ff5252;
+    color:white;
 }
 
-button{
-    padding:15px 30px;
-    font-size:20px;
-    margin:10px;
+.opcoes{
+    margin-top:20px;
+}
+
+.opcao{
+    background:#ff80ab;
+    color:white;
+    display:block;
+    width:250px;
+    margin:10px auto;
+}
+
+.coracao{
+    position:absolute;
+    color:red;
+    animation:subir 4s linear infinite;
+}
+
+@keyframes subir{
+    from{
+        transform:translateY(0);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-100vh);
+        opacity:0;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<h1>Quer sair comigo sexta-feira que vem? ❤️</h1>
+<div class="container" id="conteudo">
 
-<button onclick="aceitou()">Sim</button>
-<button id="nao">Não</button>
+<h1>❤️ Quer sair comigo sexta-feira que vem? ❤️</h1>
+
+<button id="sim" onclick="aceitou()">SIM 😍</button>
+<button id="nao">NÃO 😢</button>
+
+</div>
 
 <script>
+
 const nao = document.getElementById("nao");
 
 nao.addEventListener("mouseover", () => {
-    nao.style.left =
-        Math.random() * (window.innerWidth - 100) + "px";
 
-    nao.style.top =
-        Math.random() * (window.innerHeight - 50) + "px";
+    const largura = window.innerWidth - 120;
+    const altura = window.innerHeight - 60;
+
+    nao.style.left = Math.random() * largura + "px";
+    nao.style.top = Math.random() * altura + "px";
 });
 
 function aceitou(){
-    document.body.innerHTML =
-        "<h1>❤️ Perfeito! Sexta-feira é nossa ❤️</h1>";
+
+    document.getElementById("conteudo").innerHTML = `
+
+    <h1>🥳 Sabia que você ia aceitar! 🥳</h1>
+
+    <p>Agora escolha onde vamos comer 😋</p>
+
+    <div class="opcoes">
+
+        <button class="opcao" onclick="escolha('🍕 Pizza')">
+            🍕 Pizza
+        </button>
+
+        <button class="opcao" onclick="escolha('🍣 Sushi')">
+            🍣 Sushi
+        </button>
+
+        <button class="opcao" onclick="escolha('🍔 Hambúrguer')">
+            🍔 Hambúrguer
+        </button>
+
+        <button class="opcao" onclick="escolha('🍝 Massas')">
+            🍝 Massas
+        </button>
+
+        <button class="opcao" onclick="escolha('🍨 Sobremesa')">
+            🍨 Sobremesa
+        </button>
+
+    </div>
+    `;
+
+    chuvaCoracoes();
 }
+
+function escolha(comida){
+
+    document.getElementById("conteudo").innerHTML = `
+        <h1>❤️ Perfeito! ❤️</h1>
+        <h2>Encontro confirmado!</h2>
+        <p>Você escolheu:</p>
+        <h1>${comida}</h1>
+        <p>Agora não tem mais volta 😏</p>
+    `;
+
+    chuvaCoracoes();
+}
+
+function chuvaCoracoes(){
+
+    setInterval(()=>{
+
+        const coracao = document.createElement("div");
+
+        coracao.innerHTML="❤️";
+
+        coracao.classList.add("coracao");
+
+        coracao.style.left=Math.random()*100+"vw";
+
+        coracao.style.fontSize=
+            (Math.random()*20+20)+"px";
+
+        document.body.appendChild(coracao);
+
+        setTimeout(()=>{
+            coracao.remove();
+        },4000);
+
+    },200);
+
+}
+
 </script>
 
 </body>
