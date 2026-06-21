@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Convite ❤️</title>
+
+<style>
+body{
+    font-family: Arial;
+    text-align:center;
+    margin-top:150px;
+}
+
+#nao{
+    position:absolute;
+}
+
+button{
+    padding:15px 30px;
+    font-size:20px;
+    margin:10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Quer sair comigo sexta-feira que vem? ❤️</h1>
+
+<button onclick="aceitou()">Sim</button>
+<button id="nao">Não</button>
+
+<script>
+const nao = document.getElementById("nao");
+
+nao.addEventListener("mouseover", () => {
+    nao.style.left =
+        Math.random() * (window.innerWidth - 100) + "px";
+
+    nao.style.top =
+        Math.random() * (window.innerHeight - 50) + "px";
+});
+
+function aceitou(){
+    document.body.innerHTML =
+        "<h1>❤️ Perfeito! Sexta-feira é nossa ❤️</h1>";
+}
+</script>
+
+</body>
+</html>
